@@ -99,7 +99,7 @@ class Beep:
 
 				if status_progress : 
 
-					for i in tqdm(range(0, int(25*59.5)), desc =">>>"):
+					for i in tqdm(range(0, int(24*59.5)), desc =">>>"):
 
 						time.sleep(1.0)
 
