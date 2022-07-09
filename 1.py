@@ -35,13 +35,50 @@ class Beep:
 
 		final_min = int(now.strftime("%M")) + 25
 
-		current_time = now.strftime("%H:%M:%S")
+		if final_min >= 60:
 
-		time_list = current_time.split(':')
+			final_min = final_min - 60
 
-		time_list[1] = str(final_min)
+			final_hour = int(now.strftime("%H")) + 1
 
-		final_time = ':'.join(time_list)
+			if final_hour != 12 :
+
+				current_time = now.strftime("%H:%M:%S")
+
+				time_list = current_time.split(':')
+
+				time_list[1] = str(final_min)
+
+				if len(str(final_hour)) == 1:
+
+					final_hour = '0' + str(final_hour)
+
+				time_list[0] = str(final_hour)
+
+				final_time = ':'.join(time_list)
+
+			else:
+
+				current_time = now.strftime("%H:%M:%S")
+
+				time_list = current_time.split(':')
+
+				time_list[1] = str(final_min)
+
+				time_list[0] = '00'
+
+				final_time = ':'.join(time_list)
+
+
+		else:
+
+			current_time = now.strftime("%H:%M:%S")
+
+			time_list = current_time.split(':')
+
+			time_list[1] = str(final_min)
+
+			final_time = ':'.join(time_list)
 
 		return final_time
 
@@ -75,6 +112,9 @@ class Beep:
 
 			current_time = self.current()
 
+			print(current_time)
+			print(final_time)
+
 			if current_time == final_time:
 
 				print()
@@ -99,13 +139,13 @@ class Beep:
 
 				if status_progress : 
 
-					for i in tqdm(range(0, int(24*59.5)), desc =">>>"):
+					for i in tqdm(range(0, int(24*59.99)), desc =">>>"):
 
 						time.sleep(1.0)
 
 					status_progress = False
 
-					status_promodo = True
+				status_promodo = True
 
 			
 	# a method for close program
